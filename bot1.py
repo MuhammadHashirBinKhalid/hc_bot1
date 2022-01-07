@@ -58,9 +58,8 @@ if __name__ == "__main__":
     dataset=result.iloc[:,2:]
     dataset['hour']=dataset._time.dt.hour
     dataset['mins']=dataset._time.dt.minute
-    dataset['stress'] = dataset.heart_rate>100
-    X = dataset.iloc[:,1:7].values
-    y = dataset.iloc[:,7].values
+    X = dataset[['calories','distance','heart_rate','steps','hour','mins']].values
+    y = dataset[['stress']].values
     print(X.shape,y.shape)
     # Splitting the dataset into the Training set and Test set
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
@@ -78,10 +77,10 @@ if __name__ == "__main__":
     classifier = Sequential()
     
     # Adding the input layer and the first hidden layer
-    classifier.add(Dense(6, kernel_initializer = 'uniform', activation = 'relu', input_dim = 6))
+    classifier.add(Dense(3, kernel_initializer = 'uniform', activation = 'relu', input_dim = 6))
     
     # Adding the second hidden layer
-    #classifier.add(Dense(6, kernel_initializer = 'uniform', activation = 'relu'))
+    classifier.add(Dense(2, kernel_initializer = 'uniform', activation = 'relu'))
     
     # Adding the output layer
     classifier.add(Dense(1, kernel_initializer = 'uniform', activation = 'sigmoid'))
