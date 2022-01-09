@@ -41,7 +41,7 @@ if __name__ == "__main__":
                              default='D:/OneDrive - Higher Education Commission/Documents/NYU/Semester 3/ITP/Bots repos/models/bot')
     
     args = myargparser.parse_args()
-    #sys.path.append(args.data_api)
+    sys.path.append(args.data_api)
     bot_data = importlib.import_module('bot_data')
 
     print(args.maxtime)
